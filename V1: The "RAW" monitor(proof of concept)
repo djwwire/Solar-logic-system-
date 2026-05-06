@@ -1,0 +1,26 @@
+# Project:Solar bank auditor 3.0 (The Logging Edition)
+#Lead dev: djwwire
+
+import datetime # This adds the current date and time to our report
+
+battery_readings = [12.6, 13.8, 11.2, 12.1, 14.2]
+timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H: %M")
+
+print(f"––– SCAN START: {timestamp}–––")
+
+#This line create(or open) a file called 'solar_log.txt'
+with open("solar_log.txt", "a") as log_file:
+    log_file.write(f"\n–––Audit Run: {timestamp}–––\n")
+    
+    for volts in battery_readings:
+        if 11.5 <= volts <= 14.0:
+            status = "OK"
+        else:
+            status = "ALERT"
+            # If there is an alert we write it permanet log file 
+            log_file.write(f"CRITICAL: Battery at {volts}V detected! \n")
+            
+            print(f"Reading {volts}V ... [{status}]")
+            
+print("-" * 30)
+print("Audit complete. Critical events save to solar_log.txt")
