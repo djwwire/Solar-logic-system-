@@ -1,0 +1,13 @@
+# Solar Bank Health Auditor
+**Developed by djwwire**
+
+## Project Overview
+This Python-based utility is designed for **Operational Technology (OT) Security** and maintenance. It monitors battery bank voltages in utility-scale solar installations to detect overcharging or critical discharge levels.
+
+## Key Features
+* **Real-time Voltage Monitoring:** Categorizes readings into 'OK' or 'ALERT' status.
+* **Persistent Event Logging:** Automatically generates a `solar_log.txt` to track critical voltage violations for maintenance audits.
+* **Audit Documentation:** Includes timestamps for every scan to ensure chronological data integrity.
+
+## Why it Matters
+In solar energy systems, irregular voltages are often the first sign of either **hardware failure** or a **cyber-physical intrusion**. This script provides a deterministic layer of security to protect expensive battery assets.
