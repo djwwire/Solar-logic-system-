@@ -1,0 +1,30 @@
+import datetime
+ 
+#--- Settings ---
+ADMIN_PIN = "2694"
+readings = [12.6, 13.8, 11.5, 12.1, 14.2]
+now = datetime.datetime.now().strftime ("%Y-%m-%d %H: %M")
+
+print(" ---SOLAR LOGIC SYSTEM ACCESS ---")
+pin = input("Enter Technician PIN :")
+
+if pin != ADMIN_PIN:
+    print("ACCESS DENIED .")
+else:
+    print("ACCESS GRANTED. \n")
+    
+    with open("solar_log.txt", "a")as log_file :
+        log_file.write(f"\n - - - Run by djwwire: {now} - - - \n")
+        
+        for volts in readings:
+            if 11.5 <= volts <= 14.0:
+                msg = f"Readings {volts}V...[OK]"
+                print(msg)
+            else:
+                msg =  f"Readings {volts}V ...[ALERT]"
+                print(msg)
+
+                log_file.write(f"CRITICAL: {volts}V detected!\n")
+            
+        print("-" * 30)
+        print("Audit Complete.  logs saved.")
