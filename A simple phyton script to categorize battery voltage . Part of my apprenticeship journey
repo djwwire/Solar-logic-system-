@@ -1,0 +1,11 @@
+# The djwwire voltage checker
+print("--- Welcome to Djwwire System check ---")
+
+voltage = int(input("Enter the Battery voltage: "))
+
+if voltage < 12:
+    print("Status: LOW BATTERY – Charge immediately.")
+elif voltage <= 42:
+    print("Status : SAFE – This a standard DC range.")
+else:
+    print("Status : DANGER – High voltage! Use insulated tools.")
