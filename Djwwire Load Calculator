@@ -1,0 +1,26 @@
+# Djwwire Professional Load Calculator
+print(" --- DJWWIRE SOLAR SYSTEM DESINGNER --- ")
+
+#Collect Data From Customer
+fans = int(input("How many Fans? "))
+fridge = int(input("How many Fridges/Freezers? "))
+bulbs = int(input("How many LED Bulbs? "))
+tv = int(input("How many TVs? "))
+
+#Calculate Total watts 
+#Fans = 70W, Fridges = 300W, Bulbs = 15W, Tv =100W
+total_watts = (fans * 70) + (fridge * 300) + (bulbs * 15) + (tv * 100)
+
+#Add 30% safety margin
+recommended_inverter_va = total_watts *1.3
+
+print("\n--- RESULTS ---")
+print(f"Total Running Load: {total_watts} Watts ")
+print(f"Recommended Inverter: {round(recommended_inverter_va)} VA")
+
+if recommended_inverter_va <= 1500:
+    print("Suggestion: Use a 1.5kVA/12V or 24V system.")
+elif recommended_inverter_va <= 3500:
+    print("Suggestion: Use a 3.5kVA/24V or 48V system.")
+else:
+    print("Suggestion: High Load Detected. Use a 5kVA/48V system.")
