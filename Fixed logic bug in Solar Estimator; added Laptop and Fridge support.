@@ -1,0 +1,33 @@
+#DjwWire Solar Load Estimator v1.0
+def calculate_load():
+    print("--- DjwWire Solar System Estimator ---")
+    
+    #1. input section(Ask user)
+    try:
+        bulbs = int(input("How many LED bulbs (Approx 15W each)?"))
+        fans = int(input("How many LED standing fans(Approx 70W each)?"))
+        tvs = int(input("How many LED tvs(Approx 100W each)?"))
+        laptop = int(input("How many LED laptop(Approx 65W each)?"))
+        fridge = int(input("How many LED fridge(Approx 300W each)?"))
+        
+        #2. Logic section(The Math)
+        total_watts = (bulbs * 15) + (fans * 70) + (tvs * 100) + (laptop * 65) + (fridge * 300)
+        
+        #3. Adding a 20% Safety Margin(Crucial For Solar)
+        #Formula: $Total * 1.2$
+        recommended_inverter = total_watts * 1.5
+        
+        #4. Output section 
+        print("\n--- RESULTS ---")
+        print(f"Total Running Load: {total_watts} watts")
+        print(f"Recommended Inverter Size:{recommended_inverter: .2f} watts")
+        
+        if total_watts > 1000:
+            print("Note: This require a 2.5KVA or higher.")
+        else:
+            print("Note: A 1KVA or 1.5KVA system should handle this.")
+            
+    except ValueError:
+            print("Error: Please enter number only!")
+# Run the function
+calculate_load()
