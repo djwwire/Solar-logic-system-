@@ -1,0 +1,39 @@
+#DjwWire Solar Load Estimator v2.0
+def calculate_solar_system():
+    print("--- DjwWire Solar System Estimator ---")
+    
+    #1. input 
+    try:
+        bulbs = int(input("How many LED bulbs (Approx 15W each)?"))
+        fans = int(input("How many LED standing fans(Approx 70W each)?"))
+        tvs = int(input("How many LED tvs(Approx 100W each)?"))
+        laptop = int(input("How many LED laptop(Approx 65W each)?"))
+        fridge = int(input("How many LED fridge(Approx 300W each)?"))
+        hours = int(input("How many hours do you want to run on battery at night?"))
+        
+        #2. The Math
+        total_watts = (bulbs * 15) + (fans * 70) + (tvs * 100) + (laptop * 65) + (fridge * 300)
+        recommended_inverter = int(total_watts * 1.5) #Made this whole number!
+        
+        #Battery calculator(The 50 % safety logic)
+        total_energy_needed = total_watts * hours
+        #One 200Ah battery safely gives about 1200Wh  
+        batteries_needed = total_energy_needed / 1200
+        
+        #4 RESULTS.
+        print("\n" + "=" *30)
+        print(f"Total Running Load: {total_watts}W")
+        print(f"Recommended Inverter: {recommended_inverter}W")
+        print(f"Energy Needed for {hours} hours: {total_energy_needed}Wh")
+        
+        #Logic to suggest battery count 
+        import math 
+        final_battery_count = math.ceil(batteries_needed)# Rounds up to nearest whole battery 
+        
+        print(f"recommended 200Ah batteries: {final_battery_count}")
+        print("=" * 30)
+        
+    except ValueError :
+        print("Error: Please use number only!")
+
+calculate_solar_system()
