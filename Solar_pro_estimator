@@ -1,0 +1,41 @@
+import math
+
+def solar_pro_estimator():
+    print("--- DjwWire Solar Business Tool v3.0 ---")
+    
+    try:
+        #Input Section
+        total_watts = int(input("Total Load (watts) :"))
+        hours = int(input("Hours of backup needed: "))
+        
+        #Battery and inverter logic 
+        recommended_inverter = int(total_watts * 1.5)
+        total_energy_needed = total_watts * hours
+        #Safety: Only using 1200Wh per 200Ah battery 
+        batteries_needed = math.ceil(total_energy_needed / 1200)
+        
+        #New: Cost Calculation Section 
+        battery_price = 350000
+        inverter_price_per_watt = 150
+        
+        total_battery_cost = batteries_needed * battery_price 
+        total_inverter_cost = recommended_inverter * inverter_price_per_watt
+        grand_total = total_battery_cost + total_inverter_cost
+        
+        #Professional Output
+        print("\n" + "="*35)
+        print(f"SYSTEM DESIGN FOR: {total_watts}W Load")
+        print(f"Inverter Size:{recommended_inverter}W")
+        print(f"Battery Bank: {batteries_needed} (200Ah)")
+        print("-" * 35)
+        print(f"Estimate Battery Cost: N{total_battery_cost: ,}")
+        print(f"Estimate Inverter Cost: N{total_inverter_cost: ,}")
+        print("-" * 35)
+        print(f"PROJECT TOTAL: N{grand_total: ,}")
+        print("*" *5 + "(price ecxclude pannel & labor)" + "*" *5)  
+        print("=" *35)
+        
+    except ValueError:
+          print("Please enter valid numbers!")
+          
+solar_pro_estimator()
