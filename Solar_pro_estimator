@@ -32,7 +32,7 @@ def solar_pro_estimator():
         print(f"Estimate Inverter Cost: N{total_inverter_cost: ,}")
         print("-" * 35)
         print(f"PROJECT TOTAL: N{grand_total: ,}")
-        print("*" *5 + "(price ecxclude pannel & labor)" + "*" *5)  
+        print("*" *5 + "(price exclude panel & labor)" + "*" *5)  
         print("=" *35)
         
     except ValueError:
