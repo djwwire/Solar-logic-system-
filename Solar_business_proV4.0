@@ -44,7 +44,7 @@ def Solar_business_pro():
         print(f"Panel Cost : N{cost_panel :,}")
         print(f"Inverter Cost : N{cost_inv :,}")
         print("-" * 40)
-        print(f"ESTINATED TOTAL: N {grand_total:,}")
+        print(f"ESTIMATED TOTAL: N {grand_total:,}")
         print("*"*3 + "(Excludes Cable, Rack & Labor)" + "*"*3)
         print("="*40)
         
