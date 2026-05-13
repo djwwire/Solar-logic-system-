@@ -1,0 +1,71 @@
+import math 
+
+def Solar_business_pro():
+    print("--- DjwWire Solar Business Tool V4.0")
+    print("Market Rate: 550W panels | 200Ah Batteries")
+    
+    try:
+        #1. Inputs
+        load = int(input("\nTotal Load (Watts):"))
+        backup_hours = int(input("Hours of backup needed:"))
+        
+        #2. Logic: Inverter & Batteries
+        inv_size = int(load * 1.5)
+        energy_needed = load * backup_hours
+        # 1.2KWh usable per 200Ah battery (50% DOD)
+        batt_count = math.ceil(energy_needed / 1200)
+        
+        #3. Logic: Solar panels (The Re-charge Factor)
+        #We need to replace the energy used +20% loss
+        total_wh_to_replace = energy_needed * 1.2
+        #Base on 5 peak sun hours in Nigeria
+        watts_required = total_wh_to_replace / 5
+        panel_count = math.ceil(watts_required / 550)
+        
+        #Market Price(NGN)
+        PRICE_PER_BATT = 350000
+        PRICE_PER_PANEL = 110000
+        PRICE_INV_BASE = 160 # N per watt for quality pure sine
+        
+        cost_batt = batt_count * PRICE_PER_BATT
+        cost_panel = panel_count * PRICE_PER_PANEL
+        cost_inv = inv_size * PRICE_INV_BASE
+        #--- LABOR CALCULATION ---
+        base_labor = 150000
+       
+        print("\n--- Installation Complexity ---")
+        print("1. Bungalow")
+        print("2. 2-story Building") 
+        print("3. 3-story+ Building")
+        
+        choice = input("Select Building Level (1/2/3):")
+        
+        if choice == "2":
+            labor_total = base_labor * 1.2 #20% increase
+        elif choice == "3":
+            labor_total = int(base_labor * 1.5) #50% increase 
+        else:
+            labor_total = base_labor
+        grand_total = cost_batt + cost_panel + cost_inv + labor_total
+        
+        #Professional output
+        print("\n" + "=" *40)
+        print(f"BILL OF QUANTITIES FOR{load}W Load")
+        print("=" * 40)
+        print(f"Inverter Size : {inv_size}W Pure Sine")
+        print(f"Battery Bank : {batt_count} units (200Ah)")
+        print(f"Solar Array : {panel_count} units (550W Mono)")
+        print("-"*40)
+        print(f"Battery Cost : N{cost_batt :,}")
+        print(f"Panel Cost : N{cost_panel :,}")
+        print(f"Inverter Cost : N{cost_inv :,}")
+        print(f"Professional Labor : N{labor_total:,}")
+        print("-" * 40)
+        print(f"FINAL CONTRACT VAL: N {grand_total:,}")
+        print("*"*3 + "(Excludes Cable & Rack)" + "*"*3)
+        print("="*40)
+        
+    except ValueError:
+        print("Error: Please enter number only.")
+            
+Solar_business_pro()
