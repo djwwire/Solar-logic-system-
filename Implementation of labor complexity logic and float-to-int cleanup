@@ -1,7 +1,7 @@
 import math 
 
 def Solar_business_pro():
-    print("--- DjwWire Solar Business Tool V4.0")
+    print("--- DjwWire Solar Business Tool V4.1")
     print("Market Rate: 550W panels | 200Ah Batteries")
     
     try:
