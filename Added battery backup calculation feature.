@@ -1,0 +1,20 @@
+#--- Solar Features :Backup Calculator ---
+
+def calculate_backup(battery_count, battery_ah, load_watts):
+    # Standard battery voltage is 12v
+    total_energy_wh = battery_count * battery_ah * 12
+    #We only use 80% of battery to keep it "Fresh" (Dept of discharging)
+    usable_energy = total_energy_wh * 0.8
+    
+    backup_hours = usable_energy / load_watts
+    return round(backup_hours, 1)
+    
+#Test it
+batt_qty = 4
+batt_capacity = 200  #200Ah batteries
+client_load = 500      # 500 Watts(Fans,Tv, Lights)
+
+hours = calculate_backup(batt_qty, batt_capacity, client_load)
+
+print(f"--- Backup Analysis ---")
+print(f"With {batt_qty} batteries, you get approximately {hours} hours of power.")
